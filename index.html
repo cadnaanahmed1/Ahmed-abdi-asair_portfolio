@@ -13,12 +13,14 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <script src="index.css"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <!-- Ku dar CDN-kan kahor inta aadan bilaabin isticmaalka Lenis -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <!-- jsPDF for CV download -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         tailwind.config = {
@@ -378,6 +380,45 @@
             height: 100%;
         }
 
+        /* Book Tabs */
+        .book-tab {
+            padding: 0.6rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+        }
+
+        .book-tab.active {
+            background: #EAB308;
+            color: #000;
+            border-color: #EAB308;
+        }
+
+        .book-tab:hover:not(.active) {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Book Item */
+        .book-item {
+            padding: 0.6rem 1rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .book-item:hover {
+            border-left-color: #EAB308;
+            color: #EAB308;
+            padding-left: 1.3rem;
+        }
+
         /* Form Inputs */
         .form-input {
             width: 100%;
@@ -500,7 +541,7 @@
             color: #fff;
         }
 
-        /* ===== CV Download Section ===== */
+        /* ===== CV Download Section Styles ===== */
         .cv-section {
             position: relative;
             overflow: hidden;
@@ -638,6 +679,7 @@
             border: none;
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             overflow: hidden;
+            font-family: 'Manrope', sans-serif;
         }
 
         .download-btn::before {
@@ -683,6 +725,7 @@
             cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.15);
             transition: all 0.3s;
+            font-family: 'Manrope', sans-serif;
         }
 
         .download-btn-secondary:hover {
@@ -713,7 +756,6 @@
             flex-shrink: 0;
         }
 
-        /* Generating state */
         .download-btn.generating {
             pointer-events: none;
             opacity: 0.8;
@@ -746,12 +788,9 @@
         }
 
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
 
-        /* Floating badge */
         .cv-badge {
             display: inline-flex;
             align-items: center;
@@ -776,18 +815,10 @@
         }
 
         @keyframes pulse-dot {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.4;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
 
-        /* Nav CV button */
         .nav-cv-btn {
             display: inline-flex;
             align-items: center;
@@ -803,6 +834,7 @@
             letter-spacing: 0.05em;
             cursor: pointer;
             transition: all 0.3s;
+            font-family: 'Manrope', sans-serif;
         }
 
         .nav-cv-btn:hover {
@@ -837,7 +869,7 @@
             <a href="#experience" style="transition-delay:0.2s">Experience</a>
             <a href="#certifications" style="transition-delay:0.25s">Certifications</a>
             <a href="#projects" style="transition-delay:0.3s">Projects</a>
-            <a href="#download-cv" style="transition-delay:0.32s" class="text-[#EAB308]!">Download CV</a>
+            <a href="#download-cv" style="transition-delay:0.32s;color:#EAB308!important">Download CV</a>
             <a href="#contact" style="transition-delay:0.35s">Contact</a>
         </nav>
     </div>
@@ -883,6 +915,7 @@
 
     <!-- ===== HERO ===== -->
     <section id="home" class="relative min-h-[100dvh] flex items-center overflow-hidden">
+        <!-- Background Image -->
         <div class="absolute inset-0">
             <img src="https://picsum.photos/seed/darktech/1920/1080.jpg" alt=""
                 class="w-full h-full object-cover opacity-20" style="filter: brightness(0.6) contrast(1.2);">
@@ -892,6 +925,7 @@
 
         <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 w-full pt-20">
             <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <!-- Text -->
                 <div class="lg:col-span-7">
                     <div class="mb-6">
                         <span
@@ -933,6 +967,7 @@
                     </div>
                 </div>
 
+                <!-- Photo -->
                 <div class="lg:col-span-5 hero-fade">
                     <div class="relative max-w-md mx-auto lg:ml-auto">
                         <div class="relative rounded-2xl overflow-hidden border border-white/10">
@@ -946,6 +981,7 @@
                                 <p class="text-xs text-white/40 mt-1">Mogadisho, Somalia</p>
                             </div>
                         </div>
+                        <!-- Decorative -->
                         <div class="absolute -top-4 -right-4 w-24 h-24 border border-[#EAB308]/20 rounded-2xl"></div>
                         <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-[#EAB308]/10 rounded-xl"></div>
                     </div>
@@ -953,6 +989,7 @@
             </div>
         </div>
 
+        <!-- Scroll Indicator -->
         <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
             <div class="w-6 h-10 border border-white/20 rounded-full flex justify-center pt-2">
                 <div class="w-1 h-2.5 bg-[#EAB308] rounded-full"></div>
@@ -960,12 +997,14 @@
         </div>
     </section>
 
+    <!-- Gold Line -->
     <div class="gold-line"></div>
 
     <!-- ===== ABOUT ===== -->
     <section id="about" class="py-24 lg:py-32">
         <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
             <div class="grid lg:grid-cols-2 gap-16 lg:gap-24">
+                <!-- Text -->
                 <div class="reveal-up">
                     <span class="section-label">About Me</span>
                     <h2 class="section-heading mb-8">Engineer. Educator.<br><span
@@ -989,7 +1028,13 @@
                     </div>
                 </div>
 
+                <!-- Stats -->
                 <div class="grid grid-cols-2 gap-5 reveal-up">
+                    <!-- <div class="glass-card p-6 lg:p-8">
+                        <div class="stat-number" data-count="5">0</div>
+                        <div class="text-xs font-semibold uppercase tracking-widest text-white/40 mt-2">
+                            Years<br>Experience</div>
+                    </div> -->
                     <div class="glass-card p-6 lg:p-8">
                         <div class="stat-number" data-count="3">3+</div>
                         <div class="text-xs font-semibold uppercase tracking-widest text-white/40 mt-2">
@@ -1026,6 +1071,7 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
+                <!-- Frontend -->
                 <div class="card-3d-wrap reveal-up">
                     <div class="card-3d-inner glass-card p-8">
                         <div class="w-12 h-12 rounded-xl bg-[#EAB308]/10 flex items-center justify-center mb-6">
@@ -1042,6 +1088,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Backend -->
                 <div class="card-3d-wrap reveal-up">
                     <div class="card-3d-inner glass-card p-8">
                         <div class="w-12 h-12 rounded-xl bg-[#EAB308]/10 flex items-center justify-center mb-6">
@@ -1058,6 +1105,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Database -->
                 <div class="card-3d-wrap reveal-up">
                     <div class="card-3d-inner glass-card p-8">
                         <div class="w-12 h-12 rounded-xl bg-[#EAB308]/10 flex items-center justify-center mb-6">
@@ -1074,6 +1122,7 @@
                 </div>
             </div>
 
+            <!-- Soft Skills -->
             <div class="mt-12 glass-card p-8 lg:p-10 reveal-up">
                 <h3 class="font-display text-xl font-medium tracking-tight mb-6">
                     <span class="text-[#EAB308]">//</span> Professional & Soft Skills
@@ -1119,6 +1168,7 @@
             </div>
 
             <div class="space-y-6">
+                <!-- CEO -->
                 <div class="glass-card p-8 lg:p-10 reveal-up cert-card">
                     <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
                         <div>
@@ -1139,6 +1189,7 @@
                     </div>
                 </div>
 
+                <!-- Lecturer -->
                 <div class="glass-card p-8 lg:p-10 reveal-up cert-card">
                     <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
                         <div>
@@ -1162,6 +1213,7 @@
                     </div>
                 </div>
 
+                <!-- Teacher -->
                 <div class="glass-card p-8 lg:p-10 reveal-up cert-card">
                     <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
                         <div>
@@ -1182,6 +1234,7 @@
                     </div>
                 </div>
 
+                <!-- Education -->
                 <div class="glass-card p-8 lg:p-10 reveal-up cert-card" style="border-color: rgba(234,179,8,0.15);">
                     <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
                         <div>
@@ -1219,6 +1272,7 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- AWS -->
                 <div class="glass-card cert-card p-6 reveal-up hover-target">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center">
@@ -1233,6 +1287,7 @@
                     <span class="text-[10px] font-semibold uppercase tracking-widest text-white/20">June 2025</span>
                 </div>
 
+                <!-- Walmart -->
                 <div class="glass-card cert-card p-6 reveal-up hover-target">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
@@ -1248,6 +1303,7 @@
                     <span class="text-[10px] font-semibold uppercase tracking-widest text-white/20">Aug 2025</span>
                 </div>
 
+                <!-- NY Jobs CEO Council -->
                 <div class="glass-card cert-card p-6 reveal-up hover-target">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
@@ -1263,6 +1319,7 @@
                     <span class="text-[10px] font-semibold uppercase tracking-widest text-white/20">July 2025</span>
                 </div>
 
+                <!-- PepsiCo -->
                 <div class="glass-card cert-card p-6 reveal-up hover-target">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center">
@@ -1278,6 +1335,7 @@
                     <span class="text-[10px] font-semibold uppercase tracking-widest text-white/20">June 2025</span>
                 </div>
 
+                <!-- Citi -->
                 <div class="glass-card cert-card p-6 reveal-up hover-target">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center">
@@ -1293,6 +1351,7 @@
                     <span class="text-[10px] font-semibold uppercase tracking-widest text-white/20">June 2025</span>
                 </div>
 
+                <!-- Skyscanner -->
                 <div class="glass-card cert-card p-6 reveal-up hover-target">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-lg bg-violet-500/10 flex items-center justify-center">
@@ -1374,81 +1433,6 @@
                         </a>
                     </div>
                 </div>
-
-
-
-                    <!-- ===== BOOKS ===== -->
-    <section id="books" class="py-24 lg:py-32">
-        <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16 reveal-up">
-                <span class="section-label">Knowledge</span>
-                <h2 class="section-heading">Books I've Read</h2>
-            </div>
-
-            <!-- <div class="flex flex-wrap justify-center gap-3 mb-10 reveal-up">
-                <button class="book-tab active" data-category="all">All</button>
-                <button class="book-tab" data-category="tech">Technology</button>
-                <button class="book-tab" data-category="business">Business</button>
-                <button class="book-tab" data-category="self">Self-Help</button>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 reveal-up" id="booksList">
-                <div class="book-item" data-cat="tech">Clean Code — Robert C. Martin</div>
-                <div class="book-item" data-cat="tech">The Pragmatic Programmer — Hunt & Thomas</div>
-                <div class="book-item" data-cat="tech">Design Patterns — Gang of Four</div>
-                <div class="book-item" data-cat="tech">You Don't Know JS — Kyle Simpson</div>
-                <div class="book-item" data-cat="tech">Eloquent JavaScript — Marijn Haverbeke</div>
-                <div class="book-item" data-cat="business">The Lean Startup — Eric Ries</div>
-                <div class="book-item" data-cat="business">Zero to One — Peter Thiel</div>
-                <div class="book-item" data-cat="business">The Hard Thing About Hard Things — Ben Horowitz</div>
-                <div class="book-item" data-cat="business">Good to Great — Jim Collins</div>
-                <div class="book-item" data-cat="self">Atomic Habits — James Clear</div>
-                <div class="book-item" data-cat="self">Deep Work — Cal Newport</div>
-                <div class="book-item" data-cat="self">The 7 Habits — Stephen Covey</div>
-                <div class="book-item" data-cat="self">Think and Grow Rich — Napoleon Hill</div>
-                <div class="book-item" data-cat="self">Mindset — Carol Dweck</div>
-                <div class="book-item" data-cat="tech">Cracking the Coding Interview — Gayle McDowell</div>
-            </div> -->
-
-            <div class="flex flex-wrap justify-center gap-3 mb-10 reveal-up">
-                <button class="book-tab active" data-category="all">All</button>
-                <button class="book-tab" data-category="self">Self-Help & Nolosha</button>
-                <button class="book-tab" data-category="literature">Suugaan & Sheekooyin</button>
-                <button class="book-tab" data-category="other">Diini & Aqoonta Guud</button>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 reveal-up" id="booksList">
-                <!-- Qeybta 1aad: Horumarinta Nafta / Self-Help -->
-                <div class="book-item" data-cat="self">Miraha wax-akhriska</div>
-                <div class="book-item" data-cat="self">Maaraynta waqtiga</div>
-                <div class="book-item" data-cat="self">Ku raaxayso noloshaada</div>
-                <div class="book-item" data-cat="self">Rumee riyadaada</div>
-                <div class="book-item" data-cat="self">Aqoon naf ma loohuray</div>
-                <div class="book-item" data-cat="self">Maano-faay</div>
-
-                <!-- Qeybta 2aad: Suugaan, Taariikh & Sheekooyin -->
-                <div class="book-item" data-cat="literature">Mudnaantii miyiga</div>
-                <div class="book-item" data-cat="literature">Loolan (Xeeladaha Dagaalka)</div>
-                <div class="book-item" data-cat="literature">Xikmad Rag iyo xeelad Dumar</div>
-                <div class="book-item" data-cat="literature">Xaaskii shaydaanka</div>
-                <div class="book-item" data-cat="literature">Saqalayn</div>
-                <div class="book-item" data-cat="literature">Waa ku salaamay saaxiib</div>
-                <div class="book-item" data-cat="literature">Dawan</div>
-                <div class="book-item" data-cat="literature">Hadhuulayso</div>
-                <div class="book-item" data-cat="literature">Dhagartii Wayneyd</div>
-                <div class="book-item" data-cat="literature">Antikriistoos</div>
-
-                <!-- Qeybta 3aad: Aqoonta Guud, Luqadaha & Diiniga -->
-                <div class="book-item" data-cat="other">Travel English</div>
-                <div class="book-item" data-cat="other">Axkaamu-sowm</div>
-                <div class="book-item" data-cat="other">Fahanka sirdoonka</div>
-                <div class="book-item" data-cat="other">Mashruucii ladagaalanka nuurka</div>
-                <div class="book-item" data-cat="other">قوانين التحرر من الصراع النفسي</div>
-                <div class="book-item" data-cat="other">لماذا يحب الرجال النساء العاهرات</div>
-            </div>
-
-        </div>
-    </section>
 
                 <!-- Cashbook -->
                 <div class="project-card glass-card overflow-hidden group reveal-up hover-target">
@@ -1561,399 +1545,562 @@
 
     <div class="gold-line"></div>
 
+    <!-- ===== BOOKS ===== -->
+    <section id="books" class="py-24 lg:py-32">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16 reveal-up">
+                <span class="section-label">Knowledge</span>
+                <h2 class="section-heading">Books I've Read</h2>
+            </div>
+
+            <!-- <div class="flex flex-wrap justify-center gap-3 mb-10 reveal-up">
+                <button class="book-tab active" data-category="all">All</button>
+                <button class="book-tab" data-category="tech">Technology</button>
+                <button class="book-tab" data-category="business">Business</button>
+                <button class="book-tab" data-category="self">Self-Help</button>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 reveal-up" id="booksList">
+                <div class="book-item" data-cat="tech">Clean Code — Robert C. Martin</div>
+                <div class="book-item" data-cat="tech">The Pragmatic Programmer — Hunt & Thomas</div>
+                <div class="book-item" data-cat="tech">Design Patterns — Gang of Four</div>
+                <div class="book-item" data-cat="tech">You Don't Know JS — Kyle Simpson</div>
+                <div class="book-item" data-cat="tech">Eloquent JavaScript — Marijn Haverbeke</div>
+                <div class="book-item" data-cat="business">The Lean Startup — Eric Ries</div>
+                <div class="book-item" data-cat="business">Zero to One — Peter Thiel</div>
+                <div class="book-item" data-cat="business">The Hard Thing About Hard Things — Ben Horowitz</div>
+                <div class="book-item" data-cat="business">Good to Great — Jim Collins</div>
+                <div class="book-item" data-cat="self">Atomic Habits — James Clear</div>
+                <div class="book-item" data-cat="self">Deep Work — Cal Newport</div>
+                <div class="book-item" data-cat="self">The 7 Habits — Stephen Covey</div>
+                <div class="book-item" data-cat="self">Think and Grow Rich — Napoleon Hill</div>
+                <div class="book-item" data-cat="self">Mindset — Carol Dweck</div>
+                <div class="book-item" data-cat="tech">Cracking the Coding Interview — Gayle McDowell</div>
+            </div> -->
+
+            <div class="flex flex-wrap justify-center gap-3 mb-10 reveal-up">
+                <button class="book-tab active" data-category="all">All</button>
+                <button class="book-tab" data-category="self">Self-Help & Nolosha</button>
+                <button class="book-tab" data-category="literature">Suugaan & Sheekooyin</button>
+                <button class="book-tab" data-category="other">Diini & Aqoonta Guud</button>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 reveal-up" id="booksList">
+                <!-- Qeybta 1aad: Horumarinta Nafta / Self-Help -->
+                <div class="book-item" data-cat="self">Miraha wax-akhriska</div>
+                <div class="book-item" data-cat="self">Maaraynta waqtiga</div>
+                <div class="book-item" data-cat="self">Ku raaxayso noloshaada</div>
+                <div class="book-item" data-cat="self">Rumee riyadaada</div>
+                <div class="book-item" data-cat="self">Aqoon naf ma loohuray</div>
+                <div class="book-item" data-cat="self">Maano-faay</div>
+
+                <!-- Qeybta 2aad: Suugaan, Taariikh & Sheekooyin -->
+                <div class="book-item" data-cat="literature">Mudnaantii miyiga</div>
+                <div class="book-item" data-cat="literature">Loolan (Xeeladaha Dagaalka)</div>
+                <div class="book-item" data-cat="literature">Xikmad Rag iyo xeelad Dumar</div>
+                <div class="book-item" data-cat="literature">Xaaskii shaydaanka</div>
+                <div class="book-item" data-cat="literature">Saqalayn</div>
+                <div class="book-item" data-cat="literature">Waa ku salaamay saaxiib</div>
+                <div class="book-item" data-cat="literature">Dawan</div>
+                <div class="book-item" data-cat="literature">Hadhuulayso</div>
+                <div class="book-item" data-cat="literature">Dhagartii Wayneyd</div>
+                <div class="book-item" data-cat="literature">Antikriistoos</div>
+
+                <!-- Qeybta 3aad: Aqoonta Guud, Luqadaha & Diiniga -->
+                <div class="book-item" data-cat="other">Travel English</div>
+                <div class="book-item" data-cat="other">Axkaamu-sowm</div>
+                <div class="book-item" data-cat="other">Fahanka sirdoonka</div>
+                <div class="book-item" data-cat="other">Mashruucii ladagaalanka nuurka</div>
+                <div class="book-item" data-cat="other">قوانين التحرر من الصراع النفسي</div>
+                <div class="book-item" data-cat="other">لماذا يحب الرجال النساء العاهرات</div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="gold-line"></div>
+
+    <!-- ===== DOWNLOAD CV SECTION ===== -->
+    <section id="download-cv" class="cv-section py-24 lg:py-32">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16 reveal-up">
+                <span class="section-label">Resume</span>
+                <h2 class="section-heading">Download My CV</h2>
+                <p class="text-white/40 mt-4 max-w-xl mx-auto">Get a comprehensive overview of my professional background, skills, and achievements in a beautifully formatted PDF.</p>
+            </div>
+
+            <div class="cv-card p-8 lg:p-12 reveal-up">
+                <div class="cv-card-glow"></div>
+
+                <div class="relative z-10 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                    <!-- CV Preview -->
+                    <div>
+                        <div class="cv-preview">
+                            <div class="cv-preview-header">
+                                <div class="cv-preview-dot" style="background:#ff5f57;"></div>
+                                <div class="cv-preview-dot" style="background:#ffbd2e;"></div>
+                                <div class="cv-preview-dot" style="background:#28c840;"></div>
+                                <span class="text-[10px] text-white/20 ml-2 font-mono">Ahmed_Abdi_Asair_CV.pdf</span>
+                            </div>
+                            <div class="cv-preview-body">
+                                <div class="cv-name">AHMED ABDI MOHAMED (ASAIR)</div>
+                                <div class="cv-title">Full-Stack Developer • University Lecturer • Tech for Good Advocate</div>
+                                <div class="cv-line"></div>
+                                <div class="cv-section-title">Professional Summary</div>
+                                <div class="cv-text">Passionate Full-Stack Developer, University Lecturer, and Executive Director currently completing a BSc in Computer Science at Somali National University...</div>
+                                <div class="cv-line"></div>
+                                <div class="cv-section-title">Core Technical Skills</div>
+                                <div class="cv-bullet"><span class="cv-text">JavaScript, Python, HTML5, CSS3, React.js, Node.js, Express.js</span></div>
+                                <div class="cv-bullet"><span class="cv-text">MongoDB, PostgreSQL, MySQL, AWS, Git & GitHub</span></div>
+                                <div class="cv-line"></div>
+                                <div class="cv-section-title">Professional Experience</div>
+                                <div class="cv-bullet"><span class="cv-text">University Lecturer — Jubba International University</span></div>
+                                <div class="cv-bullet"><span class="cv-text">Full-Stack Developer — Skyscanner via Forage</span></div>
+                                <div class="cv-bullet"><span class="cv-text">School Teacher — Al-Huda EX Siyaad School</span></div>
+                                <div class="cv-line"></div>
+                                <div class="cv-section-title">Certifications</div>
+                                <div class="cv-bullet"><span class="cv-text">AWS, Citi, PepsiCo, Skyscanner, Walmart, NY Jobs CEO Council</span></div>
+                                <div class="cv-text" style="margin-top:0.5rem; opacity:0.3;">— and more inside —</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Download Info -->
+                    <div>
+                        <div class="mb-6">
+                            <div class="cv-badge mb-4">
+                                <span class="cv-badge-dot"></span>
+                                Always Up to Date
+                            </div>
+                            <h3 class="font-display text-2xl lg:text-3xl font-medium tracking-tight mb-4">
+                                Ready to take the <span class="text-[#EAB308]">next step</span>?
+                            </h3>
+                            <p class="text-white/50 leading-relaxed">
+                                My CV includes detailed information about my professional experience, education, certifications, technical skills, and career objectives. Download it to share with your team or keep for your records.
+                            </p>
+                        </div>
+
+                        <div class="mb-8">
+                            <div class="cv-feature">
+                                <div class="cv-feature-icon">
+                                    <span class="iconify text-[#EAB308]" data-icon="lucide:file-text" data-width="18"></span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-white/80">Professional Format</p>
+                                    <p class="text-xs text-white/40">Clean, ATS-friendly layout</p>
+                                </div>
+                            </div>
+                            <div class="cv-feature">
+                                <div class="cv-feature-icon">
+                                    <span class="iconify text-[#EAB308]" data-icon="lucide:shield-check" data-width="18"></span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-white/80">Verified Credentials</p>
+                                    <p class="text-xs text-white/40">All certifications from Forage & institutions</p>
+                                </div>
+                            </div>
+                            <div class="cv-feature">
+                                <div class="cv-feature-icon">
+                                    <span class="iconify text-[#EAB308]" data-icon="lucide:zap" data-width="18"></span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-white/80">Generated Instantly</p>
+                                    <p class="text-xs text-white/40">PDF created in your browser, no server needed</p>
+                                </div>
+                            </div>
+                            <div class="cv-feature">
+                                <div class="cv-feature-icon">
+                                    <span class="iconify text-[#EAB308]" data-icon="lucide:lock" data-width="18"></span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-white/80">Privacy First</p>
+                                    <p class="text-xs text-white/40">No data sent anywhere — fully client-side</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4">
+                            <button id="cvDownloadBtn" onclick="generateAndDownloadCV()" class="download-btn hover-target">
+                                <span class="iconify" data-icon="lucide:download" data-width="18"></span>
+                                <span class="btn-text">Download PDF</span>
+                                <div class="btn-loading"><div class="spinner"></div></div>
+                            </button>
+                            <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+                                class="download-btn-secondary hover-target">
+                                <span class="iconify" data-icon="lucide:mail" data-width="18"></span>
+                                Or Contact Me
+                            </button>
+                        </div>
+
+                        <p class="text-[11px] text-white/20 mt-4 flex items-center gap-1.5">
+                            <span class="iconify" data-icon="lucide:info" data-width="12"></span>
+                            PDF size ~35KB • Opens in new tab if download doesn't start
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="gold-line"></div>
+
     <!-- ===== CONTACT ===== -->
     <section id="contact" class="py-24 lg:py-32">
         <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
             <div class="grid lg:grid-cols-2 gap-16 lg:gap-24">
+                <!-- Left -->
                 <div class="reveal-up">
                     <span class="section-label">Contact</span>
-                    <h2 class="section-heading mb-8">Let's Build<br>Something <span class="text-[#EAB308]">Great.</span>
+                    <h2 class="section-heading mb-8">Let's Build<br>Something <span class="text-[#EAB308]">Great</span>
                     </h2>
                     <p class="text-white/50 font-light leading-relaxed text-lg mb-10">
-                        Whether you have a project in mind, want to collaborate, or need a dedicated developer — I'm
-                        always open to new opportunities and conversations.
+                        Whether you have a project in mind, need a consultant, or want to collaborate — I'd love to hear
+                        from you. Let's turn ideas into reality.
                     </p>
 
-                    <div class="space-y-6">
+                    <div class="space-y-5">
                         <a href="mailto:casayrdheere52@gmail.com"
-                            class="flex items-center gap-4 text-white/60 hover:text-[#EAB308] transition-colors group">
+                            class="flex items-center gap-4 text-white/60 hover:text-[#EAB308] transition-colors group hover-target">
                             <div
-                                class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#EAB308]/30 transition-colors">
+                                class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#EAB308]/10 transition-colors">
                                 <span class="iconify" data-icon="lucide:mail" data-width="20"></span>
                             </div>
                             <div>
-                                <p class="text-xs text-white/30 uppercase tracking-widest mb-0.5">Email</p>
+                                <p class="text-xs text-white/30 uppercase tracking-widest">Email</p>
                                 <p class="text-sm font-medium">casayrdheere52@gmail.com</p>
                             </div>
                         </a>
-                        <a href="tel:+2520771351394"
-                            class="flex items-center gap-4 text-white/60 hover:text-[#EAB308] transition-colors group">
+                        <a href="https://www.linkedin.com/in/eng-ahmed-abdi-asair-366513370/" target="_blank"
+                            rel="noopener"
+                            class="flex items-center gap-4 text-white/60 hover:text-[#EAB308] transition-colors group hover-target">
                             <div
-                                class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#EAB308]/30 transition-colors">
-                                <span class="iconify" data-icon="lucide:phone" data-width="20"></span>
+                                class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#EAB308]/10 transition-colors">
+                                <span class="iconify" data-icon="lucide:linkedin" data-width="20"></span>
                             </div>
                             <div>
-                                <p class="text-xs text-white/30 uppercase tracking-widest mb-0.5">Phone</p>
-                                <p class="text-sm font-medium">+252 077 1 35 13 94</p>
+                                <p class="text-xs text-white/30 uppercase tracking-widest">LinkedIn</p>
+                                <p class="text-sm font-medium">Eng. Ahmed Abdi Asair</p>
                             </div>
                         </a>
-                        <div class="flex items-center gap-4 text-white/60">
+                        <!-- <a href="https://github.com/ahmedabdiasair" target="_blank" rel="noopener"
+                            class="flex items-center gap-4 text-white/60 hover:text-[#EAB308] transition-colors group hover-target">
                             <div
-                                class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                                class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#EAB308]/10 transition-colors">
+                                <span class="iconify" data-icon="lucide:github" data-width="20"></span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-white/30 uppercase tracking-widest">GitHub</p>
+                                <p class="text-sm font-medium">github.com/ahmedabdiasair</p>
+                            </div>
+                        </a> -->
+
+                        <div class="space-y-4">
+                            <!-- GitHub Account 1: Casayr32 -->
+                            <a href="https://github.com/Casayr32" target="_blank" rel="noopener"
+                                class="flex items-center gap-4 text-white/60 hover:text-[#EAB308] transition-colors group hover-target">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#EAB308]/10 transition-colors">
+                                    <span class="iconify" data-icon="lucide:github" data-width="20"></span>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-white/30 uppercase tracking-widest">GitHub (Secondary)</p>
+                                    <p class="text-sm font-medium">github.com/Casayr32</p>
+                                </div>
+                            </a>
+
+                            <!-- GitHub Account 2: cadnaanahmed1 -->
+                            <a href="https://github.com/cadnaanahmed1" target="_blank" rel="noopener"
+                                class="flex items-center gap-4 text-white/60 hover:text-[#EAB308] transition-colors group hover-target">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#EAB308]/10 transition-colors">
+                                    <span class="iconify" data-icon="lucide:github" data-width="20"></span>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-white/30 uppercase tracking-widest">GitHub (Primary)</p>
+                                    <p class="text-sm font-medium">github.com/cadnaanahmed1</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-4 text-white/60">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
                                 <span class="iconify" data-icon="lucide:map-pin" data-width="20"></span>
                             </div>
                             <div>
-                                <p class="text-xs text-white/30 uppercase tracking-widest mb-0.5">Location</p>
-                                <p class="text-sm font-medium">Mogadishu, Banaadir, Somalia</p>
+                                <p class="text-xs text-white/30 uppercase tracking-widest">Location</p>
+                                <p class="text-sm font-medium">Mogadisho, Somalia</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Right — Form -->
                 <div class="reveal-up">
-    <form action="https://formspree.io/f/xovjwwnd" method="POST" id="contactForm"
-        class="glass-card p-8 lg:p-10 space-y-5">
-        <div>
-            <label class="block text-xs font-semibold uppercase tracking-widest text-white/40 mb-2">Full Name</label>
-            <input type="text" name="name" class="form-input" placeholder="Your name" required>
-        </div>
-        <div>
-            <label class="block text-xs font-semibold uppercase tracking-widest text-white/40 mb-2">Email</label>
-            <input type="email" name="email" class="form-input" placeholder="you@example.com" required>
-        </div>
-        <div>
-            <label class="block text-xs font-semibold uppercase tracking-widest text-white/40 mb-2">Subject</label>
-            <input type="text" name="subject" class="form-input" placeholder="Project inquiry" required>
-        </div>
-        <div>
-            <label class="block text-xs font-semibold uppercase tracking-widest text-white/40 mb-2">Message</label>
-            <textarea name="message" rows="5" class="form-input resize-none"
-                placeholder="Tell me about your project..." required></textarea>
-        </div>
-        <button type="submit" id="submitBtn"
-            class="w-full bg-[#EAB308] text-black py-4 rounded-xl text-sm font-semibold uppercase tracking-wider hover:bg-[#FDE047] transition-colors cursor-pointer flex items-center justify-center gap-2">
-            Send Message
-            <span class="iconify" data-icon="lucide:send" data-width="16"></span>
-        </button>
-        <!-- Halkan waxaa ka muuqan doona natiijada -->
-        <div id="form-status" class="text-center text-sm font-medium mt-2"></div>
-    </form>
-</div>
+                    <form action="https://formspree.io/f/xovjwwnd" method="POST" id="contactForm"
+                        class="glass-card p-8 lg:p-10 space-y-5">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-widest text-white/40 mb-2">Full
+                                Name</label>
+                            <input type="text" name="name" class="form-input" placeholder="Your name" required>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-semibold uppercase tracking-widest text-white/40 mb-2">Email</label>
+                            <input type="email" name="email" class="form-input" placeholder="you@example.com" required>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-semibold uppercase tracking-widest text-white/40 mb-2">Subject</label>
+                            <input type="text" name="subject" class="form-input" placeholder="Project inquiry" required>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-semibold uppercase tracking-widest text-white/40 mb-2">Message</label>
+                            <textarea name="message" rows="5" class="form-input resize-none"
+                                placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" id="submitBtn"
+                            class="w-full bg-[#EAB308] text-black py-4 rounded-xl text-sm font-semibold uppercase tracking-wider hover:bg-[#FDE047] transition-colors cursor-pointer flex items-center justify-center gap-2">
+                            Send Message
+                            <span class="iconify" data-icon="lucide:send" data-width="16"></span>
+                        </button>
+                        <!-- Halkan waxaa ka muuqan doona natiijada -->
+                        <div id="form-status" class="text-center text-sm font-medium mt-2"></div>
+                    </form>
+                </div>
 
-<script>
-var form = document.getElementById("contactForm");
-var statusDiv = document.getElementById("form-status");
+                <script>
+                    var form = document.getElementById("contactForm");
+                    var statusDiv = document.getElementById("form-status");
 
-async function handleSubmit(event) {
-    event.preventDefault();
-    var data = new FormData(event.target);
-    
-    statusDiv.textContent = "Fariintu waa socotaa...";
-    statusDiv.style.color = "#EAB308";
+                    async function handleSubmit(event) {
+                        event.preventDefault();
+                        var data = new FormData(event.target);
 
-    fetch(event.target.action, {
-        method: form.method,
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
-    }).then(response => {
-        if (response.ok) {
-            statusDiv.textContent = "Waad ku mahadsan tahay! Fariintaadu si guul leh ayay ku soo gaartay.";
-            statusDiv.style.color = "#4ade80"; // Cagaar (Success)
-            form.reset();
-        } else {
-            response.json().then(data => {
-                if (Object.hasOwn(data, 'errors')) {
-                    statusDiv.textContent = data["errors"].map(error => error["message"]).join(", ");
-                } else {
-                    statusDiv.textContent = "Waa qalad dhacay, fadlan dib u day!";
-                }
-                statusDiv.style.color = "#f87171"; // Gaduud (Error)
-            })
-        }
-    }).catch(error => {
-        statusDiv.textContent = "Waa qalad dhacay xagga shabakadda, fadlan dib u day!";
-        statusDiv.style.color = "#f87171";
-    });
-}
+                        statusDiv.textContent = "Fariintu waa socotaa...";
+                        statusDiv.style.color = "#EAB308";
 
-form.addEventListener("submit", handleSubmit);
-</script>
+                        fetch(event.target.action, {
+                            method: form.method,
+                            body: data,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        }).then(response => {
+                            if (response.ok) {
+                                statusDiv.textContent = "Waad ku mahadsan tahay! Fariintaadu si guul leh ayay ku soo gaartay.";
+                                statusDiv.style.color = "#4ade80"; // Cagaar (Success)
+                                form.reset();
+                            } else {
+                                response.json().then(data => {
+                                    if (Object.hasOwn(data, 'errors')) {
+                                        statusDiv.textContent = data["errors"].map(error => error["message"]).join(", ");
+                                    } else {
+                                        statusDiv.textContent = "Waa qalad dhacay, fadlan dib u day!";
+                                    }
+                                    statusDiv.style.color = "#f87171"; // Gaduud (Error)
+                                })
+                            }
+                        }).catch(error => {
+                            statusDiv.textContent = "Waa qalad dhacay xagga shabakadda, fadlan dib u day!";
+                            statusDiv.style.color = "#f87171";
+                        });
+                    }
+
+                    form.addEventListener("submit", handleSubmit);
+                </script>
             </div>
         </div>
     </section>
 
+    <div class="gold-line"></div>
+
     <!-- ===== FOOTER ===== -->
-    <footer class="py-12 border-t border-white/5">
+    <footer class="py-12 lg:py-16">
         <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="flex items-center gap-6">
-                    <a href="#home" class="font-display font-semibold text-lg tracking-tight text-white">
-                        Ahmed<span class="text-[#EAB308]">.</span>
-                    </a>
-                    <span class="text-xs text-white/20">© 2025 All rights reserved.</span>
+                <div class="text-center md:text-left">
+                    <a href="#home" class="font-display font-semibold text-xl tracking-tight text-white">Ahmed<span
+                            class="text-[#EAB308]">.</span></a>
+                    <p class="text-xs text-white/30 mt-2">&copy; 2025 Ahmed Abdi Asair. All rights reserved.</p>
                 </div>
-                <div class="flex items-center gap-4">
-                    <a href="https://linkedin.com" target="_blank" rel="noopener"
-                        class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#EAB308] hover:border-[#EAB308]/30 transition-all">
-                        <span class="iconify" data-icon="lucide:linkedin" data-width="16"></span>
+                <div class="flex items-center gap-5">
+                    <!-- <a href="https://github.com/ahmedabdiasair" target="_blank" rel="noopener"
+                        class="text-white/30 hover:text-[#EAB308] transition-colors">
+                        <span class="iconify" data-icon="lucide:github" data-width="20"></span>
                     </a>
-                    <a href="https://github.com" target="_blank" rel="noopener"
-                        class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#EAB308] hover:border-[#EAB308]/30 transition-all">
-                        <span class="iconify" data-icon="lucide:github" data-width="16"></span>
+                    <a href="https://linkedin.com/in/ahmedabdiasair" target="_blank" rel="noopener"
+                        class="text-white/30 hover:text-[#EAB308] transition-colors">
+                        <span class="iconify" data-icon="lucide:linkedin" data-width="20"></span>
                     </a>
-                    <a href="mailto:casayrdheere52@gmail.com"
-                        class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#EAB308] hover:border-[#EAB308]/30 transition-all">
-                        <span class="iconify" data-icon="lucide:mail" data-width="16"></span>
-                    </a>
+                    <a href="mailto:ahmedabdiasair@gmail.com"
+                        class="text-white/30 hover:text-[#EAB308] transition-colors">
+                        <span class="iconify" data-icon="lucide:mail" data-width="20"></span>
+                    </a> -->
                 </div>
             </div>
         </div>
     </footer>
 
-
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ===== PDF GENERATION =====
+        // ===== CV PDF GENERATION =====
         function generateAndDownloadCV() {
-            const btn = document.getElementById('cvDownloadBtn');
-            if (btn) {
-                btn.classList.add('generating');
-            }
+            var btn = document.getElementById('cvDownloadBtn');
+            if (btn) btn.classList.add('generating');
 
-            setTimeout(() => {
+            setTimeout(function () {
                 try {
-                    const { jsPDF } = window.jspdf;
-                    const doc = new jsPDF('p', 'mm', 'a4');
-                    const pageW = 210;
-                    const marginL = 18;
-                    const marginR = 18;
-                    const contentW = pageW - marginL - marginR;
-                    let y = 0;
+                    var jsPDF = window.jspdf.jsPDF;
+                    var doc = new jsPDF('p', 'mm', 'a4');
+                    var pageW = 210;
+                    var mL = 18;
+                    var mR = 18;
+                    var cW = pageW - mL - mR;
+                    var y = 0;
 
-                    // Helper functions
-                    const gold = [234, 179, 8];
-                    const dark = [3, 3, 3];
-                    const black = [0, 0, 0];
-                    const white = [255, 255, 255];
-                    const gray60 = [153, 153, 153];
-                    const gray40 = [102, 102, 102];
-                    const gray20 = [60, 60, 60];
+                    var gold = [234, 179, 8];
+                    var black = [0, 0, 0];
+                    var gray60 = [153, 153, 153];
+                    var gray40 = [102, 102, 102];
 
-                    function setColor(c) { doc.setTextColor(c[0], c[1], c[2]); }
-                    function setFont(style, size) { doc.setFontSize(size); doc.setFont('helvetica', style); }
+                    function sC(c) { doc.setTextColor(c[0], c[1], c[2]); }
+                    function sF(s, sz) { doc.setFontSize(sz); doc.setFont('helvetica', s); }
+                    function gL(yP, w) { doc.setDrawColor(gold[0], gold[1], gold[2]); doc.setLineWidth(0.5); doc.line(mL, yP, mL + (w || cW), yP); }
+                    function cP(n) { if (y + n > 275) { doc.addPage(); y = 18; } }
 
-                    function drawGoldLine(yPos, width) {
-                        doc.setDrawColor(gold[0], gold[1], gold[2]);
-                        doc.setLineWidth(0.5);
-                        doc.line(marginL, yPos, marginL + (width || contentW), yPos);
-                    }
-
-                    function checkPage(needed) {
-                        if (y + needed > 275) {
-                            doc.addPage();
-                            y = 18;
-                        }
-                    }
-
-                    // ===== HEADER =====
-                    // Gold top bar
+                    // Header gold bar
                     doc.setFillColor(gold[0], gold[1], gold[2]);
                     doc.rect(0, 0, pageW, 4, 'F');
 
                     y = 14;
-                    setFont('bold', 22);
-                    setColor(black);
-                    doc.text('AHMED ABDI MOHAMED', marginL, y);
+                    sF('bold', 22); sC(black);
+                    doc.text('AHMED ABDI MOHAMED', mL, y);
                     y += 8;
-
-                    setFont('bold', 14);
-                    setColor(gold);
-                    doc.text('(ASAIR)', marginL, y);
+                    sF('bold', 14); sC(gold);
+                    doc.text('(ASAIR)', mL, y);
                     y += 9;
-
-                    setFont('normal', 9);
-                    setColor(gray40);
-                    doc.text('Full-Stack Developer  |  University Lecturer  |  Tech for Good Advocate', marginL, y);
+                    sF('normal', 9); sC(gray60);
+                    doc.text('Full-Stack Developer  |  University Lecturer  |  Tech for Good Advocate', mL, y);
                     y += 6;
-
-                    // Contact info line
-                    setFont('normal', 7.5);
-                    setColor(gray60);
-                    doc.text('Mogadishu, Banaadir, Somalia  |  casayrdheere52@gmail.com  |  +252 077 1 35 13 94  |  LinkedIn Profile', marginL, y);
+                    sF('normal', 7.5);
+                    doc.text('Mogadishu, Banaadir, Somalia  |  casayrdheere52@gmail.com  |  +252 077 1 35 13 94  |  LinkedIn Profile', mL, y);
                     y += 5;
-
-                    // Separator
                     y += 2;
                     doc.setFillColor(gold[0], gold[1], gold[2]);
-                    doc.rect(marginL, y, contentW, 0.8, 'F');
+                    doc.rect(mL, y, cW, 0.8, 'F');
                     y += 8;
 
-                    // ===== PROFESSIONAL SUMMARY =====
-                    setFont('bold', 10);
-                    setColor(black);
-                    doc.text('PROFESSIONAL SUMMARY', marginL, y);
-                    y += 1.5;
-                    drawGoldLine(y, 40);
-                    y += 5;
+                    // Professional Summary
+                    sF('bold', 10); sC(black);
+                    doc.text('PROFESSIONAL SUMMARY', mL, y);
+                    y += 1.5; gL(y, 40); y += 5;
+                    sF('normal', 8.5); sC(gray40);
+                    var sum = 'Passionate Full-Stack Developer, University Lecturer, and Executive Director currently completing a BSc in Computer Science at Somali National University, in his final semester (Semester 8) with expected graduation in January 2027. Expert in designing, developing, and deploying scalable web applications using JavaScript, React, Node.js, MongoDB, PostgreSQL, Python, and AWS Cloud Services. Completed practical engineering simulations with Citi, Skyscanner, AWS, and PepsiCo, strengthening capabilities in frontend/backend development, cloud architecture, machine learning applications, and system design. Currently serving as Lecturer at Jubba International University and Executive Director of the National Relief Organization, driving digital transformation for humanitarian impact across Somalia.';
+                    var sL = doc.splitTextToSize(sum, cW);
+                    doc.text(sL, mL, y);
+                    y += sL.length * 4 + 6;
 
-                    setFont('normal', 8.5);
-                    setColor(gray40);
-                    const summary = 'Passionate Full-Stack Developer, University Lecturer, and Executive Director currently completing a BSc in Computer Science at Somali National University, in his final semester (Semester 8) with expected graduation in January 2027. Expert in designing, developing, and deploying scalable web applications using JavaScript, React, Node.js, MongoDB, PostgreSQL, Python, and AWS Cloud Services. Completed practical engineering simulations with Citi, Skyscanner, AWS, and PepsiCo, strengthening capabilities in frontend/backend development, cloud architecture, machine learning applications, and system design. Currently serving as Lecturer at Jubba International University and Executive Director of the National Relief Organization, driving digital transformation for humanitarian impact across Somalia.';
-                    const summaryLines = doc.splitTextToSize(summary, contentW);
-                    doc.text(summaryLines, marginL, y);
-                    y += summaryLines.length * 4 + 6;
+                    // Career Objective
+                    cP(25);
+                    sF('bold', 10); sC(black);
+                    doc.text('CAREER OBJECTIVE', mL, y);
+                    y += 1.5; gL(y, 40); y += 5;
+                    sF('normal', 8.5); sC(gray40);
+                    var obj = 'To leverage expertise in software engineering, education, and organizational leadership to develop innovative digital solutions that drive social impact, technological advancement, and sustainable development throughout Somalia and the wider region.';
+                    var oL = doc.splitTextToSize(obj, cW);
+                    doc.text(oL, mL, y);
+                    y += oL.length * 4 + 6;
 
-                    // ===== CAREER OBJECTIVE =====
-                    checkPage(25);
-                    setFont('bold', 10);
-                    setColor(black);
-                    doc.text('CAREER OBJECTIVE', marginL, y);
-                    y += 1.5;
-                    drawGoldLine(y, 40);
-                    y += 5;
-
-                    setFont('normal', 8.5);
-                    setColor(gray40);
-                    const objective = 'To leverage expertise in software engineering, education, and organizational leadership to develop innovative digital solutions that drive social impact, technological advancement, and sustainable development throughout Somalia and the wider region.';
-                    const objLines = doc.splitTextToSize(objective, contentW);
-                    doc.text(objLines, marginL, y);
-                    y += objLines.length * 4 + 6;
-
-                    // ===== EDUCATION =====
-                    checkPage(30);
-                    setFont('bold', 10);
-                    setColor(black);
-                    doc.text('EDUCATION', marginL, y);
-                    y += 1.5;
-                    drawGoldLine(y, 40);
-                    y += 5;
-
-                    setFont('bold', 9);
-                    setColor(black);
-                    doc.text('Bachelor of Science (BSc), Computer Science', marginL, y);
-                    y += 4.5;
-
-                    setFont('italic', 8);
-                    setColor(gray60);
-                    doc.text('Somali National University  |  Sep 2022 - Jan 2027 (Expected)', marginL, y);
-                    y += 4;
-
-                    setFont('normal', 8);
-                    setColor(gray40);
-                    const eduBullets = [
+                    // Education
+                    cP(30);
+                    sF('bold', 10); sC(black);
+                    doc.text('EDUCATION', mL, y);
+                    y += 1.5; gL(y, 40); y += 5;
+                    sF('bold', 9); sC(black);
+                    doc.text('Bachelor of Science (BSc), Computer Science', mL, y); y += 4.5;
+                    sF('italic', 8); sC(gray60);
+                    doc.text('Somali National University  |  Sep 2022 - Jan 2027 (Expected)', mL, y); y += 4;
+                    sF('normal', 8); sC(gray40);
+                    var eduB = [
                         'Final Semester (Semester 8) of the program, on track to graduate in January 2027.',
                         'Coursework: Software Engineering, Full-Stack Web Development, Database Systems, Computer Networks, Artificial Intelligence, Data Structures and Algorithms, Information Systems, Cybersecurity Fundamentals, Cloud Computing.',
                         'Completed practical projects involving web application development and database management.',
                         'Developed strong analytical, problem-solving, and programming skills through academic and practical work.'
                     ];
-                    eduBullets.forEach(b => {
-                        checkPage(8);
-                        const bLines = doc.splitTextToSize(b, contentW - 6);
-                        doc.text('\u2022  ', marginL, y);
-                        doc.text(bLines, marginL + 4, y);
-                        y += bLines.length * 3.8 + 1;
+                    eduB.forEach(function (b) {
+                        cP(8);
+                        var bL = doc.splitTextToSize(b, cW - 6);
+                        doc.text('\u2022  ', mL, y);
+                        doc.text(bL, mL + 4, y);
+                        y += bL.length * 3.8 + 1;
                     });
                     y += 4;
 
-                    // ===== PROFESSIONAL EXPERIENCE =====
-                    checkPage(20);
-                    setFont('bold', 10);
-                    setColor(black);
-                    doc.text('PROFESSIONAL EXPERIENCE', marginL, y);
-                    y += 1.5;
-                    drawGoldLine(y, 40);
-                    y += 5;
+                    // Professional Experience
+                    cP(20);
+                    sF('bold', 10); sC(black);
+                    doc.text('PROFESSIONAL EXPERIENCE', mL, y);
+                    y += 1.5; gL(y, 40); y += 5;
 
-                    // Job 1
-                    setFont('bold', 9);
-                    setColor(black);
-                    doc.text('University Lecturer', marginL, y);
-                    y += 4;
-                    setFont('italic', 8);
-                    setColor(gray60);
-                    doc.text('Jubba International University  |  Mogadishu, Somalia  |  Dec 2025 - Present', marginL, y);
-                    y += 4;
-                    setFont('normal', 8);
-                    setColor(gray40);
-                    const job1Bullets = [
+                    sF('bold', 9); sC(black);
+                    doc.text('University Lecturer', mL, y); y += 4;
+                    sF('italic', 8); sC(gray60);
+                    doc.text('Jubba International University  |  Mogadishu, Somalia  |  Dec 2025 - Present', mL, y); y += 4;
+                    sF('normal', 8); sC(gray40);
+                    var j1 = [
                         'Deliver high-quality lectures in technology and computer science disciplines to undergraduate students.',
                         'Mentor students and support their intellectual, academic, and professional development.',
                         'Create engaging learning environments that encourage critical thinking, innovation, and academic growth.',
                         'Develop curriculum materials aligned with industry standards in software development and IT.'
                     ];
-                    job1Bullets.forEach(b => {
-                        checkPage(8);
-                        const bLines = doc.splitTextToSize(b, contentW - 6);
-                        doc.text('\u2022  ', marginL, y);
-                        doc.text(bLines, marginL + 4, y);
-                        y += bLines.length * 3.8 + 1;
+                    j1.forEach(function (b) {
+                        cP(8);
+                        var bL = doc.splitTextToSize(b, cW - 6);
+                        doc.text('\u2022  ', mL, y);
+                        doc.text(bL, mL + 4, y);
+                        y += bL.length * 3.8 + 1;
                     });
                     y += 4;
 
-                    // Job 2
-                    checkPage(20);
-                    setFont('bold', 9);
-                    setColor(black);
-                    doc.text('School Teacher', marginL, y);
-                    y += 4;
-                    setFont('italic', 8);
-                    setColor(gray60);
-                    doc.text('Al-Huda EX Siyaad School  |  Previous', marginL, y);
-                    y += 4;
-                    setFont('normal', 8);
-                    setColor(gray40);
-                    const job2Bullets = [
-                        'Provided classroom instruction, guided student learning, and delivered educational curricula with a focus on student development.'
-                    ];
-                    job2Bullets.forEach(b => {
-                        checkPage(8);
-                        const bLines = doc.splitTextToSize(b, contentW - 6);
-                        doc.text('\u2022  ', marginL, y);
-                        doc.text(bLines, marginL + 4, y);
-                        y += bLines.length * 3.8 + 1;
-                    });
-                    y += 4;
+                    cP(20);
+                    sF('bold', 9); sC(black);
+                    doc.text('School Teacher', mL, y); y += 4;
+                    sF('italic', 8); sC(gray60);
+                    doc.text('Al-Huda EX Siyaad School  |  Previous', mL, y); y += 4;
+                    sF('normal', 8); sC(gray40);
+                    var bL2 = doc.splitTextToSize('Provided classroom instruction, guided student learning, and delivered educational curricula with a focus on student development.', cW - 6);
+                    doc.text('\u2022  ', mL, y);
+                    doc.text(bL2, mL + 4, y);
+                    y += bL2.length * 3.8 + 5;
 
-                    // Job 3
-                    checkPage(25);
-                    setFont('bold', 9);
-                    setColor(black);
-                    doc.text('Full-Stack Developer - Virtual Job Simulation', marginL, y);
-                    y += 4;
-                    setFont('italic', 8);
-                    setColor(gray60);
-                    doc.text('Skyscanner via Forage  |  Remote  |  June 2024', marginL, y);
-                    y += 4;
-                    setFont('normal', 8);
-                    setColor(gray40);
-                    const job3Bullets = [
+                    cP(25);
+                    sF('bold', 9); sC(black);
+                    doc.text('Full-Stack Developer - Virtual Job Simulation', mL, y); y += 4;
+                    sF('italic', 8); sC(gray60);
+                    doc.text('Skyscanner via Forage  |  Remote  |  June 2024', mL, y); y += 4;
+                    sF('normal', 8); sC(gray40);
+                    var j3 = [
                         'Built a functional date-picker application using Backpack React components to improve UX in flight booking systems.',
                         'Applied JavaScript (ES6+), HTML5, and CSS3 with React, using component-based design and state management.',
                         'Followed Skyscanner\'s design system and accessibility standards for production-quality interfaces.',
                         'Enhanced debugging, problem-solving, and Git-based version control skills.'
                     ];
-                    job3Bullets.forEach(b => {
-                        checkPage(8);
-                        const bLines = doc.splitTextToSize(b, contentW - 6);
-                        doc.text('\u2022  ', marginL, y);
-                        doc.text(bLines, marginL + 4, y);
-                        y += bLines.length * 3.8 + 1;
+                    j3.forEach(function (b) {
+                        cP(8);
+                        var bL = doc.splitTextToSize(b, cW - 6);
+                        doc.text('\u2022  ', mL, y);
+                        doc.text(bL, mL + 4, y);
+                        y += bL.length * 3.8 + 1;
                     });
                     y += 4;
 
-                    // ===== PRACTICAL EXPERIENCE =====
-                    checkPage(30);
-                    setFont('bold', 10);
-                    setColor(black);
-                    doc.text('PRACTICAL EXPERIENCE & JOB SIMULATIONS', marginL, y);
-                    y += 1.5;
-                    drawGoldLine(y, 40);
-                    y += 5;
-
-                    setFont('normal', 8);
-                    setColor(gray40);
-                    const simBullets = [
+                    // Practical Experience
+                    cP(30);
+                    sF('bold', 10); sC(black);
+                    doc.text('PRACTICAL EXPERIENCE & JOB SIMULATIONS', mL, y);
+                    y += 1.5; gL(y, 40); y += 5;
+                    sF('normal', 8); sC(gray40);
+                    var sims = [
                         'Citi - Designed state diagrams and applied machine learning techniques to assess credit risk for financial systems.',
                         'AWS - Redesigned a scalable architecture for a Single Page Application using Elastic Beanstalk and Amazon RDS.',
                         'PepsiCo - Led system design of Augur, a predictive supply chain dashboard integrating data analytics and visualization.',
@@ -1961,313 +2108,369 @@ form.addEventListener("submit", handleSubmit);
                         'Walmart Global Tech - Advanced Data Structures, Software Architecture, Relational DB Design, Data Munging.',
                         'NY Jobs CEO Council - Fixed critical bugs, implemented features, production-level problem solving.'
                     ];
-                    simBullets.forEach(b => {
-                        checkPage(8);
-                        const bLines = doc.splitTextToSize(b, contentW - 6);
-                        doc.text('\u2022  ', marginL, y);
-                        doc.text(bLines, marginL + 4, y);
-                        y += bLines.length * 3.8 + 1;
+                    sims.forEach(function (b) {
+                        cP(8);
+                        var bL = doc.splitTextToSize(b, cW - 6);
+                        doc.text('\u2022  ', mL, y);
+                        doc.text(bL, mL + 4, y);
+                        y += bL.length * 3.8 + 1;
                     });
                     y += 4;
 
-                    // ===== CORE TECHNICAL SKILLS =====
-                    checkPage(35);
-                    setFont('bold', 10);
-                    setColor(black);
-                    doc.text('CORE TECHNICAL SKILLS', marginL, y);
-                    y += 1.5;
-                    drawGoldLine(y, 40);
-                    y += 5;
-
-                    const skills = [
+                    // Core Technical Skills
+                    cP(35);
+                    sF('bold', 10); sC(black);
+                    doc.text('CORE TECHNICAL SKILLS', mL, y);
+                    y += 1.5; gL(y, 40); y += 5;
+                    var skills = [
                         ['Programming Languages:', 'JavaScript, Python, HTML5, CSS3'],
                         ['Frontend Development:', 'React.js, Responsive Web Design, UI/UX Development, State Management'],
                         ['Backend Development:', 'Node.js, Express.js, REST APIs'],
                         ['Databases:', 'MongoDB, PostgreSQL, MySQL'],
                         ['Cloud & DevOps:', 'AWS, Elastic Beanstalk, Amazon RDS, Git & GitHub']
                     ];
-
-                    skills.forEach(([label, value]) => {
-                        checkPage(8);
-                        setFont('bold', 8);
-                        setColor(black);
-                        doc.text(label, marginL, y);
-                        const labelW = doc.getTextWidth(label);
-                        setFont('normal', 8);
-                        setColor(gray40);
-                        doc.text(value, marginL + labelW + 2, y);
+                    skills.forEach(function (s) {
+                        cP(8);
+                        sF('bold', 8); sC(black);
+                        doc.text(s[0], mL, y);
+                        var lW = doc.getTextWidth(s[0]);
+                        sF('normal', 8); sC(gray40);
+                        doc.text(s[1], mL + lW + 2, y);
                         y += 5;
                     });
                     y += 4;
 
-                    // ===== PROFESSIONAL SKILLS =====
-                    checkPage(20);
-                    setFont('bold', 10);
-                    setColor(black);
-                    doc.text('PROFESSIONAL SKILLS', marginL, y);
-                    y += 1.5;
-                    drawGoldLine(y, 40);
-                    y += 5;
+                    // Professional Skills
+                    cP(20);
+                    sF('bold', 10); sC(black);
+                    doc.text('PROFESSIONAL SKILLS', mL, y);
+                    y += 1.5; gL(y, 40); y += 5;
+                    sF('normal', 8); sC(gray40);
+                    var pS = 'Executive Leadership, Project Management, System Design, Technical Training, Research & Analysis, Strategic Planning, Humanitarian Program Development, Agile & Scrum Methodologies, Public Speaking & Leadership, Time Management & Productivity';
+                    var pL = doc.splitTextToSize(pS, cW);
+                    doc.text(pL, mL, y);
+                    y += pL.length * 4 + 6;
 
-                    setFont('normal', 8);
-                    setColor(gray40);
-                    const profSkills = 'Executive Leadership, Project Management, System Design, Technical Training, Research & Analysis, Strategic Planning, Humanitarian Program Development, Agile & Scrum Methodologies, Public Speaking & Leadership, Time Management & Productivity';
-                    const profLines = doc.splitTextToSize(profSkills, contentW);
-                    doc.text(profLines, marginL, y);
-                    y += profLines.length * 4 + 6;
-
-                    // ===== FOOTER =====
-                    checkPage(12);
+                    // Footer
+                    cP(12);
                     doc.setFillColor(gold[0], gold[1], gold[2]);
-                    doc.rect(marginL, y, contentW, 0.4, 'F');
+                    doc.rect(mL, y, cW, 0.4, 'F');
                     y += 5;
-                    setFont('normal', 7);
-                    setColor(gray60);
-                    doc.text('Generated from ahmedasair.dev  |  ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), marginL, y);
+                    sF('normal', 7); sC(gray60);
+                    doc.text('Generated from ahmedasair.dev  |  ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), mL, y);
 
-                    // Save
                     doc.save('Ahmed_Abdi_Asair_CV.pdf');
                     showToast('CV downloaded successfully!', 'success');
                 } catch (err) {
-                    console.error('PDF generation error:', err);
+                    console.error('PDF error:', err);
                     showToast('Error generating CV. Please try again.', 'error');
                 }
-
-                if (btn) {
-                    btn.classList.remove('generating');
-                }
+                if (btn) btn.classList.remove('generating');
             }, 600);
         }
 
-        // ===== TOAST =====
-        function showToast(message, type) {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.textContent = message;
-            container.appendChild(toast);
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => toast.classList.add('show'));
-            });
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 400);
-            }, 3500);
+        // ─── Register GSAP Plugin ───
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ─── Lenis Smooth Scroll ───
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+            direction: 'vertical',
+            smooth: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
         }
+        requestAnimationFrame(raf);
 
-        // ===== PRELOADER =====
-        (function () {
-            const counter = document.getElementById('preloaderCounter');
-            const bar = document.getElementById('preloaderBar');
-            const preloader = document.getElementById('preloader');
-            let count = 0;
+        // Sync Lenis with ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
 
-            const interval = setInterval(() => {
-                count += Math.floor(Math.random() * 8) + 2;
-                if (count > 100) count = 100;
-                counter.textContent = count;
-                bar.style.width = count + '%';
-                if (count >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        gsap.to(preloader, {
-                            yPercent: -100,
-                            duration: 1,
-                            ease: 'power4.inOut',
-                            onComplete: () => {
-                                preloader.style.display = 'none';
-                                animateHero();
-                            }
-                        });
-                    }, 300);
-                }
-            }, 50);
-        })();
+        // ─── Custom Cursor ───
+        var cursorDot = document.querySelector('.cursor-dot');
+        var cursorCircle = document.querySelector('.cursor-circle');
+        var mouseX = 0, mouseY = 0;
+        var circleX = 0, circleY = 0;
 
-        // ===== HERO ANIMATION =====
-        function animateHero() {
-            gsap.to('.hero-line-inner', {
-                y: '0%',
-                duration: 1.4,
-                ease: 'power4.out',
-                stagger: 0.1
+        document.addEventListener('mousemove', function (e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (cursorDot) {
+                cursorDot.style.left = mouseX + 'px';
+                cursorDot.style.top = mouseY + 'px';
+            }
+        });
+
+        function animateCursor() {
+            circleX += (mouseX - circleX) * 0.15;
+            circleY += (mouseY - circleY) * 0.15;
+            if (cursorCircle) {
+                cursorCircle.style.left = circleX + 'px';
+                cursorCircle.style.top = circleY + 'px';
+            }
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover targets — enlarge cursor circle
+        document.querySelectorAll('.hover-target, a, button').forEach(function (el) {
+            el.addEventListener('mouseenter', function () {
+                if (cursorCircle) cursorCircle.classList.add('hovered');
             });
-            gsap.from('.hero-fade', {
-                opacity: 0,
-                y: 30,
-                duration: 1,
+            el.addEventListener('mouseleave', function () {
+                if (cursorCircle) cursorCircle.classList.remove('hovered');
+            });
+        });
+
+        // ─── Preloader ───
+        var preloader = document.getElementById('preloader');
+        var preloaderCounter = document.getElementById('preloaderCounter');
+        var preloaderBar = document.getElementById('preloaderBar');
+
+        var preloaderTL = gsap.timeline({
+            onComplete: function () {
+                // Remove preloader from DOM
+                if (preloader) preloader.style.display = 'none';
+                // Start page animations
+                initPageAnimations();
+            }
+        });
+
+        // Counter animation: 0 → 100
+        var counterObj = { val: 0 };
+        preloaderTL.to(counterObj, {
+            val: 100,
+            duration: 2.5,
+            ease: 'power2.inOut',
+            onUpdate: function () {
+                if (preloaderCounter) preloaderCounter.textContent = Math.round(counterObj.val);
+            }
+        });
+
+        // Bar fill (runs in parallel with counter)
+        preloaderTL.to(preloaderBar, {
+            width: '100%',
+            duration: 2.5,
+            ease: 'power2.inOut'
+        }, '<');
+
+        // Fade/slide out preloader
+        preloaderTL.to(preloader, {
+            yPercent: -100,
+            duration: 0.8,
+            ease: 'power3.inOut',
+            delay: 0.3
+        });
+
+        // ─── Page Animations (called after preloader finishes) ───
+        function initPageAnimations() {
+            // Set initial state for hero-fade elements
+            gsap.set('.hero-fade', { opacity: 0, y: 30 });
+
+            // Hero text reveal
+            gsap.to('.hero-line-inner', {
+                y: 0,
+                duration: 1.2,
                 ease: 'power3.out',
                 stagger: 0.15,
-                delay: 0.6
-            });
-        }
-
-        // ===== CUSTOM CURSOR =====
-        (function () {
-            const dot = document.querySelector('.cursor-dot');
-            const circle = document.querySelector('.cursor-circle');
-            if (!dot || !circle) return;
-            if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return;
-
-            let mx = 0, my = 0, cx = 0, cy = 0;
-            document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-            function tick() {
-                cx += (mx - cx) * 0.15;
-                cy += (my - cy) * 0.15;
-                dot.style.left = mx + 'px';
-                dot.style.top = my + 'px';
-                circle.style.left = cx + 'px';
-                circle.style.top = cy + 'px';
-                requestAnimationFrame(tick);
-            }
-            tick();
-
-            document.querySelectorAll('.hover-target, a, button').forEach(el => {
-                el.addEventListener('mouseenter', () => circle.classList.add('hovered'));
-                el.addEventListener('mouseleave', () => circle.classList.remove('hovered'));
-            });
-        })();
-
-        // ===== MOBILE MENU =====
-        (function () {
-            const hamburger = document.getElementById('hamburger');
-            const menu = document.getElementById('mobileMenu');
-            if (!hamburger || !menu) return;
-
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                menu.classList.toggle('open');
-                document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+                delay: 0.1
             });
 
-            menu.querySelectorAll('a').forEach(a => {
-                a.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    menu.classList.remove('open');
-                    document.body.style.overflow = '';
-                });
+            // Hero fade elements (subtitle, buttons, photo)
+            gsap.to('.hero-fade', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power2.out',
+                stagger: 0.2,
+                delay: 0.5
             });
-        })();
 
-        // ===== SCROLL REVEALS =====
-        (function () {
-            gsap.registerPlugin(ScrollTrigger);
-
-            gsap.utils.toArray('.reveal-up').forEach(el => {
-                gsap.from(el, {
-                    y: 50,
+            // Scroll-triggered reveal animations
+            gsap.utils.toArray('.reveal-up').forEach(function (el) {
+                gsap.fromTo(el, {
                     opacity: 0,
-                    duration: 0.9,
-                    ease: 'power3.out',
+                    y: 60
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power2.out',
                     scrollTrigger: {
                         trigger: el,
-                        start: 'top 88%',
-                        once: true
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
                     }
                 });
             });
 
-            // Stat counters
-            gsap.utils.toArray('.stat-number[data-count]').forEach(el => {
-                const target = parseInt(el.dataset.count);
-                const obj = { val: 0 };
-                ScrollTrigger.create({
-                    trigger: el,
-                    start: 'top 85%',
-                    once: true,
-                    onEnter: () => {
-                        gsap.to(obj, {
-                            val: target,
-                            duration: 1.8,
-                            ease: 'power2.out',
-                            onUpdate: () => {
-                                el.textContent = Math.round(obj.val) + (target === 3 ? '+' : '+');
-                            }
-                        });
+            // Stat counter animations
+            gsap.utils.toArray('.stat-number').forEach(function (el) {
+                var target = parseInt(el.getAttribute('data-count'));
+                var obj = { val: 0 };
+                gsap.to(obj, {
+                    val: target,
+                    duration: 2,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    onUpdate: function () {
+                        el.textContent = Math.round(obj.val) + '+';
                     }
                 });
             });
 
-            // Back to top
-            const btt = document.getElementById('backToTop');
-            if (btt) {
-                ScrollTrigger.create({
-                    start: 'top -400',
-                    onEnter: () => btt.classList.add('visible'),
-                    onLeaveBack: () => btt.classList.remove('visible')
-                });
-                btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-            }
-
-            // Active nav link
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            sections.forEach(section => {
-                ScrollTrigger.create({
-                    trigger: section,
-                    start: 'top center',
-                    end: 'bottom center',
-                    onEnter: () => updateNav(section.id),
-                    onEnterBack: () => updateNav(section.id)
-                });
-            });
-
-            function updateNav(id) {
-                navLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-                });
-            }
-        })();
-
-        // ===== 3D CARD TILT =====
-        (function () {
-            if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return;
-            document.querySelectorAll('.card-3d-wrap').forEach(wrap => {
-                const inner = wrap.querySelector('.card-3d-inner');
+            // 3D Card tilt effect
+            document.querySelectorAll('.card-3d-wrap').forEach(function (wrap) {
+                var inner = wrap.querySelector('.card-3d-inner');
                 if (!inner) return;
-                wrap.addEventListener('mousemove', e => {
-                    const rect = wrap.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = ((y - centerY) / centerY) * -5;
-                    const rotateY = ((x - centerX) / centerX) * 5;
-                    inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+                wrap.addEventListener('mousemove', function (e) {
+                    var rect = wrap.getBoundingClientRect();
+                    var x = e.clientX - rect.left;
+                    var y = e.clientY - rect.top;
+                    var centerX = rect.width / 2;
+                    var centerY = rect.height / 2;
+                    var rotateX = ((y - centerY) / centerY) * -8;
+                    var rotateY = ((x - centerX) / centerX) * 8;
+                    inner.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
                 });
-                wrap.addEventListener('mouseleave', () => {
+
+                wrap.addEventListener('mouseleave', function () {
                     inner.style.transform = 'rotateX(0) rotateY(0)';
                 });
             });
-        })();
 
-        // ===== CONTACT FORM =====
-        document.getElementById('contactForm')?.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const btn = this.querySelector('button[type="submit"]');
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<span class="spinner" style="border-color:rgba(0,0,0,0.2);border-top-color:#000;width:18px;height:18px;border-width:2px;"></span>';
-            btn.disabled = true;
+            // Active nav link highlighting on scroll
+            var sections = document.querySelectorAll('section[id]');
+            var navLinks = document.querySelectorAll('.nav-link');
 
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.disabled = false;
-                this.reset();
-                showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
-            }, 1500);
-        });
+            ScrollTrigger.create({
+                trigger: document.body,
+                start: 'top top',
+                end: 'bottom bottom',
+                onUpdate: function () {
+                    var current = '';
+                    sections.forEach(function (section) {
+                        var sectionTop = section.offsetTop - 120;
+                        if (window.scrollY >= sectionTop) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+                    navLinks.forEach(function (link) {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + current) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
 
-        // ===== SMOOTH SCROLL (Lenis fallback) =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // ─── Mobile Menu ───
+        var hamburger = document.getElementById('hamburger');
+        var mobileMenu = document.getElementById('mobileMenu');
+
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', function () {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // ─── Smooth Scroll for Anchor Links ───
+        document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                var target = document.querySelector(anchor.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    lenis.scrollTo(target, { offset: -80 });
                 }
             });
         });
+
+        // ─── Book Tabs Filtering ───
+        var bookTabs = document.querySelectorAll('.book-tab');
+        var bookItems = document.querySelectorAll('.book-item');
+
+        bookTabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                bookTabs.forEach(function (t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+
+                var cat = tab.getAttribute('data-category');
+                bookItems.forEach(function (item) {
+                    if (cat === 'all' || item.getAttribute('data-cat') === cat) {
+                        item.style.display = 'block';
+                        gsap.fromTo(item, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.3 });
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ─── Contact Form Submission ───
+        var contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
+                contactForm.reset();
+            });
+        }
+
+        // ─── Toast Notification System ───
+        function showToast(message, type) {
+            type = type || 'success';
+            var container = document.getElementById('toastContainer');
+            var toast = document.createElement('div');
+            toast.className = 'toast ' + type;
+            toast.textContent = message;
+            if (container) container.appendChild(toast);
+
+            requestAnimationFrame(function () {
+                toast.classList.add('show');
+            });
+
+            setTimeout(function () {
+                toast.classList.remove('show');
+                setTimeout(function () { toast.remove(); }, 400);
+            }, 4000);
+        }
+
+        // ─── Back to Top Button ───
+        var backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 600) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', function () {
+                lenis.scrollTo(0);
+            });
+        }
     </script>
 </body>
 
